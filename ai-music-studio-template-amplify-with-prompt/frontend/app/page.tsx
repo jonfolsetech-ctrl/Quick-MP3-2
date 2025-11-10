@@ -1,5 +1,5 @@
 
-'use client'
+ 'use client'
 
 import { useState } from 'react'
 
@@ -14,19 +14,7 @@ export default function Studio() {
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">AI Music Studio</h1>
         <nav className="flex gap-2">
-          <button onClick={()=>setTab('lyrics')}
-        {mixResult && schemaMode && (
-          <pre className="whitespace-pre-wrap text-xs bg-slate-800/60 p-3 rounded-lg overflow-auto">{JSON.stringify({reintegration_plan: mixResult}, null, 2)}</pre>
-        )}
-        {sepResult && schemaMode && (
-          <pre className="whitespace-pre-wrap text-xs bg-slate-800/60 p-3 rounded-lg overflow-auto">{JSON.stringify({separation_plan: sepResult}, null, 2)}</pre>
-        )}
-      {result && schemaMode && (
-        <pre className="whitespace-pre-wrap text-xs bg-slate-800/60 p-3 rounded-lg overflow-auto">{JSON.stringify({composition_result: result}, null, 2)}</pre>
-      )}
-      {result && schemaMode && (
-        <pre className="whitespace-pre-wrap text-xs bg-slate-800/60 p-3 rounded-lg overflow-auto">{JSON.stringify({lyrics_result: result}, null, 2)}</pre>
-      )} className={`btn ${tab==='lyrics'?'bg-indigo-500':'bg-slate-700'}`}>Lyrics</button>
+          <button onClick={()=>setTab('lyrics')} className={`btn ${tab==='lyrics'?'bg-indigo-500':'bg-slate-700'}`}>Lyrics</button>
           <button onClick={()=>setTab('compose')} className={`btn ${tab==='compose'?'bg-indigo-500':'bg-slate-700'}`}>Compose</button>
           <button onClick={()=>setTab('vocal')} className={`btn ${tab==='vocal'?'bg-indigo-500':'bg-slate-700'}`}>Vocal Lab</button>
           <button onClick={()=>setTab('help')} className={`btn ${tab==='help'?'bg-indigo-500':'bg-slate-700'}`}>Help</button>
@@ -111,6 +99,9 @@ function LyricsPanel({schemaMode=false}:{schemaMode?:boolean}){
           ))}
         </div>
       )}
+      {result && schemaMode && (
+        <pre className="whitespace-pre-wrap text-xs bg-slate-800/60 p-3 rounded-lg overflow-auto">{JSON.stringify({lyrics_result: result}, null, 2)}</pre>
+      )}
     </section>
   )
 }
@@ -168,6 +159,9 @@ function ComposePanel({schemaMode=false}:{schemaMode?:boolean}){
           <div className="text-sm">Key: {result.metadata.key} • Tempo: {result.metadata.tempo_bpm} • Style: {result.metadata.style}</div>
         </div>
       )}
+      {result && schemaMode && (
+        <pre className="whitespace-pre-wrap text-xs bg-slate-800/60 p-3 rounded-lg overflow-auto">{JSON.stringify({composition_result: result}, null, 2)}</pre>
+      )}
     </section>
   )
 }
@@ -224,6 +218,9 @@ function VocalPanel({schemaMode=false}:{schemaMode?:boolean}){
             <div>Vocals (mock): {sepResult.vocals_url}</div>
           </div>
         )}
+          {sepResult && schemaMode && (
+            <pre className="whitespace-pre-wrap text-xs bg-slate-800/60 p-3 rounded-lg overflow-auto">{JSON.stringify({separation_plan: sepResult}, null, 2)}</pre>
+          )}
       </div>
 
       <div className="space-y-2">
@@ -235,6 +232,9 @@ function VocalPanel({schemaMode=false}:{schemaMode?:boolean}){
             <div>Final Mix (mock): {mixResult.final_mix_url}</div>
             <div>Preset: {mixResult.settings.preset} • Key: {mixResult.settings.key} • BPM: {mixResult.settings.tempo_bpm}</div>
           </div>
+        )}
+        {mixResult && schemaMode && (
+          <pre className="whitespace-pre-wrap text-xs bg-slate-800/60 p-3 rounded-lg overflow-auto">{JSON.stringify({reintegration_plan: mixResult}, null, 2)}</pre>
         )}
       </div>
     </section>
