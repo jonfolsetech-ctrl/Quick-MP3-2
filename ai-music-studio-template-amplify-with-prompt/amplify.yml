@@ -1,0 +1,25 @@
+
+version: 1
+applications:
+  - appRoot: frontend
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci || npm i
+            - echo "NEXT_PUBLIC_API_BASE=$NEXT_PUBLIC_API_BASE" > .env.local
+            - echo "NEXT_PUBLIC_BASE_PATH=$NEXT_PUBLIC_BASE_PATH" >> .env.local
+        build:
+          commands:
+            - npm run export
+      artifacts:
+        baseDirectory: out
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+
+# Notes:
+# - Set NEXT_PUBLIC_API_BASE and (optional) NEXT_PUBLIC_BASE_PATH in Amplify Console > Build settings > Environment variables.
+# - This config assumes a static export (Next.js 'output: export') and serves the 'frontend/out' folder.

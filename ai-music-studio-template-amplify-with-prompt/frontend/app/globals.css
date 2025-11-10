@@ -1,0 +1,21 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: 88 101 242;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-xl bg-indigo-500/90 hover:bg-indigo-500 transition;
+}
+.card {
+  @apply rounded-2xl bg-slate-900/60 border border-slate-800 p-4;
+}
+.input, .select, .file {
+  @apply bg-slate-800/70 border border-slate-700 rounded-lg px-3 py-2 w-full;
+}
+.label {
+  @apply text-sm text-slate-300;
+}
